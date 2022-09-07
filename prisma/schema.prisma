@@ -18,3 +18,15 @@ model User {
 
   @@map("users")
 }
+
+model Pedido {
+  id         Int      @id @default(autoincrement())
+  cliente    String
+  pedido     String
+  endereco   String
+  created_at DateTime @default(now())
+  email      String   @unique
+  telefone   String   @unique
+
+  @@map("pedidos")
+}
