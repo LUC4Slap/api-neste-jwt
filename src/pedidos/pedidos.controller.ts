@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreatePedidoDTO } from './DTO/create-pedido.dto';
@@ -34,5 +43,10 @@ export class PedidosController {
   @Get()
   async consultarPedidosPorData(@Query() data) {
     return await this.pedidosService.consultarPedidosPorData(data);
+  }
+
+  @Delete(':id')
+  async deletarPedido(@Param() id) {
+    return await this.pedidosService.deletarPedido(id);
   }
 }

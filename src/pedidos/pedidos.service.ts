@@ -12,12 +12,22 @@ export class PedidosService {
 
   async consultarPedidosPorData(data) {
     const { inicioData, fimData } = data;
+    // const inicio = new Date(inicioData).getTime().toString();
+    // const fim = new Date(fimData).getTime().toString();
     return await this.prisma.pedido.findMany({
       where: {
         created_at: {
-          gte: inicioData,
-          lte: fimData,
+          gte: new Date(inicioData),
+          lte: new Date(fimData),
         },
+      },
+    });
+  }
+
+  async deletarPedido(id) {
+    return await this.prisma.pedido.deleteMany({
+      where: {
+        id: Number(id.id),
       },
     });
   }

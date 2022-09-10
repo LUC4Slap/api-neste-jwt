@@ -23,7 +23,6 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
   // @ApiSecurity('basic')
   @ApiOperation({
     summary: 'Cria Usuario',
