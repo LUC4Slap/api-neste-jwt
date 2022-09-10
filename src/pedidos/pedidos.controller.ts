@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreatePedidoDTO } from './DTO/create-pedido.dto';
 import { PedidosService } from './pedidos.service';
 
@@ -21,6 +22,7 @@ export class PedidosController {
     return await this.pedidosService.create(pedido);
   }
 
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Retorna pedidos apartir de uma data' })
   @ApiQuery({ name: 'fimData' })
   @ApiQuery({ name: 'inicioData' })
