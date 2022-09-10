@@ -1,1 +1,1 @@
-web: yarn start:prod
+web: yarn prisma dev && yarn start:prod
